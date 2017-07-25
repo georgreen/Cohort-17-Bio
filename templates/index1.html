@@ -1,0 +1,58 @@
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='css/main.css')}}">
+{% endblock %}
+
+{% block scripts %}
+<script src="{{url_for('.static', filename='js/script.js')}}"></script>
+{{super()}}
+{% endblock %}
+
+{% block title %}Andela Cohort 17-NBO {% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <!-- ... -->
+</div>
+{% endblock %}
+
+
+
+{% block content %}
+<div class="container">
+  <div class="col-md-6 col-md-offset-3">
+      <h1 class="col-md-8 col-md-offset-2">Join Cohort 17</h1>
+  </div>
+  <form method="POST" action="/register">
+    {{ form.csrf_token }}
+
+    <div class="col-md-8 col-md-offset-3">
+      <div  class="form-group col-md-4">
+          {{ form.first_name.label }} {{ form.first_name(size=20, required="required", placeholder="first name",  class="form-control") }}
+      </div>
+      <div  class="form-group col-md-4">
+          {{ form.second_name.label }} {{ form.second_name(size=20, required="required", placeholder="second name",  class="form-control") }}
+      </div>
+      <div  class="form-group col-md-5">
+          {{ form.email( type="email", size=80, required="required", placeholder="email", class="form-control") }}
+      </div>
+    </div>
+
+    <div class="col-md-12 col-md-offset-3">
+      <div class="col-md-12">
+        {{ form.description.label }}
+      </div>
+      {{ form.description(required="required", placeholder="Description", rows="5", class="col-md-6")}}
+    </div>
+
+    <div class="col-md-12 padding-custom">
+        <button type="submit" class="btn btn-success col-md-3 col-md-offset-5">Register</button>
+    </div>
+    </form>
+</div>
+{% endblock %}
