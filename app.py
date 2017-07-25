@@ -105,6 +105,12 @@ def get_user_count():
     return jsonify({"total": len(User.query.all())})
 
 
+@app.route("/counter")
+def counter():
+    """Display users in db."""
+    return render_template('counter.html')
+
+
 def create_user(email, first_name, second_name, description):
     """A user creation factory methid."""
     if not User.query.filter_by(email=email).first():
