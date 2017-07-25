@@ -1,9 +1,17 @@
 {% extends "bootstrap/base.html" %} {% block styles %} {{super()}}
-<link rel="stylesheet" href="{{url_for('.static', filename='css/main.css')}}"> {% endblock %} {%block scripts %}
-{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='css/main.css')}}"> {% endblock %} {%block scripts %} {{super()}}
 <script src="{{url_for('.static', filename='js/counter.js')}}"></script>
- {% endblock %} {% block title %}Andela Cohort 17-NBO {% endblock %} {% block content %}
-<div class="counter">
+{% endblock %} {% block title %}Andela Cohort 17-NBO {% endblock %} {% block content %}
+<div class="container">
+    <div class="row">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
+        </div>
+        {% endfor %}
+        <div class="counter">
 
+        </div>
+    </div>
 </div>
 {% endblock %}

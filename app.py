@@ -12,6 +12,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField
 from wtforms.validators import DataRequired
 
+# app configurations
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
@@ -75,6 +76,7 @@ manager.add_command("db", MigrateCommand)
 # routes
 @app.route("/")
 def home():
+    """View for landing page."""
     return render_template('index.html')
 
 
@@ -90,11 +92,12 @@ def register():
 
         if not (validate_names(first_name) and validate_names(second_name)):
             flash("Invalid user name")
-        if not create_user(email, first_name, second_name, description):
+        elif not create_user(email, first_name, second_name, description):
             flash("User exists already")
         else:
             flash("{} You joined corhort 17 succesfully".format(
                 first_name + " " + second_name))
+            return render_template('counter.html')
 
     return render_template('index1.html', form=form)
 
@@ -111,6 +114,7 @@ def counter():
     return render_template('counter.html')
 
 
+# utility methods/helpers
 def create_user(email, first_name, second_name, description):
     """A user creation factory methid."""
     if not User.query.filter_by(email=email).first():

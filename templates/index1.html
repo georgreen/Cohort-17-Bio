@@ -1,11 +1,7 @@
-{% extends "bootstrap/base.html" %} {% import "bootstrap/wtf.html" as wtf %} {% block styles %} {{super()}}
+{% extends "bootstrap/base.html" %} {% block styles %} {{super()}}
 <link rel="stylesheet" href="{{url_for('.static', filename='css/main.css')}}"> {% endblock %} {% block scripts %}
 <script src="{{url_for('.static', filename='js/script.js')}}"></script>
-{{super()}} {% endblock %} {% block title %}Andela Cohort 17-NBO {% endblock %} {% block navbar %}
-<div class="navbar navbar-fixed-top">
-    <!-- ... -->
-</div>
-{% endblock %} {% block content %}
+{{super()}} {% endblock %} {% block title %}Andela Cohort 17-NBO {% endblock %} {% block content %}
 <div class="container">
     <div class="row">
         {% for message in get_flashed_messages() %}
@@ -13,9 +9,11 @@
             <button type="button" class="close" data-dismiss="alert">&times;</button> {{ message }}
         </div>
         {% endfor %}
+
         <div class="col-md-6 col-md-offset-3">
             <h1 class="col-md-8 col-md-offset-2">Join Cohort 17</h1>
         </div>
+
         <form method="POST" action="/register">
             {{ form.csrf_token }}
 
