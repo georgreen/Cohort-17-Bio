@@ -27,7 +27,7 @@
                     {{ form.second_name.label }} {{ form.second_name(size=20, required="required", placeholder="second name", class="form-control") }}
                 </div>
                 <div class="form-group col-md-5">
-                    {{ form.email( type="email", size=80, required="required", placeholder="email", class="form-control") }}
+                    {{ form.email.label }} {{ form.email( type="email", size=80, required="required", placeholder="email", class="form-control") }}
                 </div>
             </div>
 
@@ -35,13 +35,23 @@
                 <div class="col-md-12">
                     {{ form.description.label }}
                 </div>
-                {{ form.description(required="required", placeholder="Tell us more about yourself.....", rows="5", class="col-md-6")}}
+                <div class="col-md-12">
+                    {{ form.description(required="required", placeholder="Tell us more about yourself.....", rows="5", class="col-md-6")}}
+                </div>
             </div>
 
             <div class="col-md-12 padding-custom">
                 <button type="submit" class="btn btn-success col-md-3 col-md-offset-5">Register</button>
             </div>
         </form>
+
+        <div class="col-md-12">
+            <div class="col-md-12 padding-custom">
+                <a href="{{url_for('home')}}">
+                <button class="btn btn-success col-md-3 col-md-offset-5">Back</button>
+            </a>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
