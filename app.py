@@ -3,7 +3,7 @@
 import os
 import re
 
-from flask import Flask, jsonify, render_template, url_for
+from flask import Flask, flash, jsonify, render_template, url_for
 from flask_bootstrap import Bootstrap
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
@@ -89,11 +89,12 @@ def register():
         description = form.description.data
 
         if not (validate_names(first_name) and validate_names(second_name)):
-            return "Invalid user name"
+            flash("Invalid user name")
         if not create_user(email, first_name, second_name, description):
-            return "User exists already"
-        return "{} You joined corhort 17 succesfully".format(
-            first_name + " " + second_name)
+            flash("User exists already")
+        else:
+            flash("{} You joined corhort 17 succesfully".format(
+                first_name + " " + second_name))
 
     return render_template('index1.html', form=form)
 
